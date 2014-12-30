@@ -716,55 +716,55 @@ class phpTypography {
 
 	#	Returns:	ARRAY of supported hyphenation languages in the form array( language code => language name)
 	function get_languages() {
-		$results = wp_cache_get( 'wpt_lang' );
-		if ( false === $results ) {
-			$languages	 = array();
-			$langDir	 = dirname( __FILE__ ) . "/lang/";
-			$handler	 = opendir( $langDir );
-
-			// read all files in directory
-			while ( $file = readdir( $handler ) ) {
-				// we only want the php files
-				if ( substr( $file, -4 ) == ".php" ) {
-					$fileContent			 = file_get_contents( $langDir . $file );
-					preg_match( '/\$patgenLanguage\s*=\s*((".+")|(\'.+\'))\s*;/', $fileContent, $matches );
-					$languageName			 = substr( $matches[ 1 ], 1, -1 );
-					$languageCode			 = substr( $file, 0, -4 );
-					$results[ $languageCode ]	 = $languageName;
-				}
-			}
-			closedir( $handler );
-
-			asort( $results );
-			wp_cache_set( 'wpt_lang', $results );
-		}
-		return $results;
+		return array(
+			'eu'		 => 'Basque',
+			'bg'		 => 'Bulgarian',
+			'ca'		 => 'Catalan',
+			'zh-Latn'	 => 'Chinese pinyin (Latin)',
+			'hr'		 => 'Croatian',
+			'cs'		 => 'Czech',
+			'da'		 => 'Danish',
+			'en-GB'		 => 'English (United Kingdom)',
+			'en-US'		 => 'English (United States)',
+			'et'		 => 'Estonian',
+			'fi'		 => 'Finnish',
+			'fr'		 => 'French',
+			'gl'		 => 'Galician',
+			'de'		 => 'German',
+			'grc'		 => 'Greek (Ancient)',
+			'el-Mono'	 => 'Greek (Modern Monotonic)',
+			'el-Poly'	 => 'Greek (Modern Polytonic)',
+			'hu'		 => 'Hungarian',
+			'is'		 => 'Icelandic',
+			'id'		 => 'Indonesian',
+			'ia'		 => 'Interlingua',
+			'ga'		 => 'Irish',
+			'it'		 => 'Italian',
+			'la'		 => 'Latin',
+			'lt'		 => 'Lithuanian',
+			'mn-Cyrl'	 => 'Mongolian (Cyrillic)',
+			'no'		 => 'Norwegian',
+			'pl'		 => 'Polish',
+			'pt'		 => 'Portuguese',
+			'ro'		 => 'Romanian',
+			'ru'		 => 'Russian',
+			'sa'		 => 'Sanskrit',
+			'sr-Cyrl'	 => 'Serbian (Cyrillic)',
+			'sh-Cyrl'	 => 'Serbocroatian (Cyrillic)',
+			'sh-Latn'	 => 'Serbocroatian (Latin)',
+			'sk'		 => 'Slovak',
+			'sl'		 => 'Slovenian',
+			'es'		 => 'Spanish',
+			'sv'		 => 'Swedish',
+			'tr'		 => 'Turkish',
+			'uk'		 => 'Ukrainian',
+			'cy'		 => 'Welsh'
+		);
 	}
 
 	#	Returns:	ARRAY of supported hyphenation languages in the form array( language code => language name)
 	function get_diacritic_languages() {
-		$results = wp_cache_get( 'wpt_dlang' );
-		if ( false === $results ) {
-			$languages	 = array();
-			$langDir	 = dirname( __FILE__ ) . "/diacritics/";
-			$handler	 = opendir( $langDir );
-
-			// read all files in directory
-			while ( $file = readdir( $handler ) ) {
-				// we only want the php files
-				if ( substr( $file, -4 ) == ".php" ) {
-					$fileContent			 = file_get_contents( $langDir . $file );
-					preg_match( '/\$diacriticLanguage\s*=\s*((".+")|(\'.+\'))\s*;/', $fileContent, $matches );
-					$languageName			 = substr( $matches[ 1 ], 1, -1 );
-					$languageCode			 = substr( $file, 0, -4 );
-					$results[ $languageCode ]	 = $languageName;
-				}
-			}
-			closedir( $handler );
-			wp_cache_set( 'wpt_dlang', $results );
-			asort( $results );
-		}
-		return $results;
+		return array('en-US'		 => 'English (United States)');
 	}
 
 	#	Action:		modifies $html according to the defined settings
