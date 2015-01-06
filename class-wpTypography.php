@@ -679,7 +679,9 @@ sub {
 	}
 
 	function process($text, $isTitle = FALSE) {
-		
+		if (is_admin() || true == $isTitle){
+			return $text;
+		}
 		if(is_feed()) { //feed readers can be pretty stupid
 			return $this->phpTypo->process_feed($text, $isTitle);
 		} else {
